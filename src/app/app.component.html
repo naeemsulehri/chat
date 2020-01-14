@@ -36,7 +36,7 @@
 
           </div>
         </div>
- 
+
 <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
   <input type="file" name="profile" (change)=" OnFileSelect($event)"/>
   <input type="text" name="textMessage" class="write_msg" [value]="txtMessage"

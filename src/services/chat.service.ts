@@ -7,6 +7,7 @@ import { Message } from '../models/message';
 })
 export class ChatService {
   messageReceived = new EventEmitter<Message>();
+  messageRead = new EventEmitter<Message>();
   connectionEstablished = new EventEmitter<Boolean>();
  
 
@@ -16,7 +17,9 @@ export class ChatService {
   constructor() {
     this.createConnection();
     this.registerOnServerEvents();
+    this.registerOnServerMsgRead();
     this.startConnection();
+
   }
 
   sendMessage(message: Message) {
@@ -46,6 +49,11 @@ export class ChatService {
   private registerOnServerEvents(): void {
     this._hubConnection.on('MessageReceived', (data: any) => {
       this.messageReceived.emit(data);
+    });
+  }
+  private registerOnServerMsgRead(): void {
+    this._hubConnection.on('messageRead', (data: any) => {
+      this.messageRead.emit(data);
     });
   }
 }  

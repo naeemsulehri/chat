@@ -77,7 +77,7 @@ ngOnInit(){
 
   private subscribeToRead(): void {
 
-    this.chatService.messageReceived.subscribe((message: Message) => {
+    this.chatService.messageRead.subscribe((message: Message) => {
       this._ngZone.run(() => {
         if (message.clientuniqueid !== this.uniqueID) {
           this.message.status = MessageStatus.Read;
