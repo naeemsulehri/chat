@@ -1,0 +1,43 @@
+; Engine configuration file.
+config_version=5
+
+[application]
+
+config/name="Shuffle Up"
+config/description="A hub of classic South Asian and international card games."
+run/main_scene="res://ui/main_menu.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/bg_color=Color(0.04, 0.12, 0.09, 1)
+config/icon="res://icon.svg"
+
+[autoload]
+
+Settings="*res://core/autoload/settings.gd"
+I18n="*res://core/autoload/i18n.gd"
+UITheme="*res://core/autoload/ui_theme.gd"
+Sound="*res://core/autoload/sound_manager.gd"
+Router="*res://core/autoload/router.gd"
+
+[display]
+
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/size/window_width_override=405
+window/size/window_height_override=780
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[internationalization]
+
+locale/fallback="en"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.04, 0.12, 0.09, 1)
