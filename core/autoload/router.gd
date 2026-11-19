@@ -27,6 +27,19 @@ func _ready() -> void:
 ## Dev helper: `-- --shot=/tmp/a.png@3.5` saves a screenshot after 3.5 s.
 func _schedule_screenshots() -> void:
 	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--tap="):  # dev: --tap=360,1150@20 simulates a tap
+			var spec2: String = arg.substr(6)
+			var xy := spec2.substr(0, spec2.rfind("@")).split(",")
+			var when := float(spec2.substr(spec2.rfind("@") + 1))
+			get_tree().create_timer(when, true, false, true).timeout.connect(func():
+				for down in [true, false]:
+					var ev := InputEventMouseButton.new()
+					ev.button_index = MOUSE_BUTTON_LEFT
+					ev.pressed = down
+					ev.position = Vector2(float(xy[0]), float(xy[1]))
+					ev.global_position = ev.position
+					Input.parse_input_event(ev))
+			continue
 		if not arg.begins_with("--shot="):
 			continue
 		var spec: String = arg.substr(7)

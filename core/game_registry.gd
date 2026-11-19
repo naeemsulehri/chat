@@ -12,8 +12,10 @@ static func all() -> Array:
 			"rules": "res://games/rang/rang_rules.gd",
 		},
 		{
-			"id": "seep", "name": "GAME_SEEP", "desc": "GAME_SEEP_DESC",
-			"available": false, "suit": CardData.Suit.SPADES, "accent": Color("5cc8ff"),
+			"id": "seep", "name": "GAME_SEEP", "desc": "GAME_SEEP_DESC", "summary": "RULES_SUMMARY_SEEP",
+			"available": true, "suit": CardData.Suit.SPADES, "accent": Color("5cc8ff"),
+			"scene": "res://games/seep/seep_game.tscn",
+			"rules": "res://games/seep/seep_rules.gd",
 		},
 		{
 			"id": "poker", "name": "GAME_POKER", "desc": "GAME_POKER_DESC",

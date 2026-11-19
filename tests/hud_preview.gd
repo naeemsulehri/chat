@@ -6,8 +6,9 @@ func _ready() -> void:
 	layer.layer = -1
 	add_child(layer)
 	layer.add_child(FeltBackground.new())
-	var hud := RangHUD.new()
+	var hud := TableHUD.new()
 	add_child(hud)
+	hud.setup_seats([{"seat": 0, "name": "NAME_0", "team": 0}, {"seat": 1, "name": "NAME_1", "team": 1}, {"seat": 2, "name": "NAME_2", "team": 0, "sub": "PARTNER"}, {"seat": 3, "name": "NAME_3", "team": 1}])
 	hud.set_target(7)
 	hud.set_scores([4, 2])
 	hud.set_tricks([7, 0], 3)
@@ -22,11 +23,11 @@ func _ready() -> void:
 			mode = a.substr(10)
 	match mode:
 		"result":
-			hud.show_round_result({"winner_team": 0, "tricks": [7, 0], "court": true, "bavan": false, "points": 2, "scores": [6, 2]})
+			hud.show_round_result(true, "ROUND_WON", ["COURT!", "Tricks 7 – 0  ·  +2 points"], [6, 2])
 			Effects.confetti(self, Vector2(360, vs.y + 40), 120)
 		"over":
 			hud.show_game_over(0, [7, 3], func(): pass, func(): pass)
 		"pause":
 			hud.show_pause(func(): pass, func(): pass, func(): pass)
 		"picker":
-			hud.open_trump_picker()
+			hud.open_choices("MSG_CHOOSE_TRUMP", [{"value": 0, "label": "SUIT_0", "suit": 0}, {"value": 1, "label": "SUIT_1", "suit": 1}, {"value": 3, "label": "SUIT_3", "suit": 3}, {"value": 2, "label": "SUIT_2", "suit": 2}])
